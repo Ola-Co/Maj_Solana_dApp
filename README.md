@@ -1,17 +1,15 @@
-# Maj Solana MVP
+# Maj Solana 
 
-Hackathon MVP frontend for Maj multisig contracts on Solana devnet.
+Development Frontend for Maj multisig contracts on Solana devnet.
 
 
 For this app backend is written in Solana Rust - https://github.com/Ola-Co/Maj_Core_Solana
-
-This is the link to live repor : https://github.com/Ola-Co/Maj_dApp
 
 This is the link to live site: https://maj.olaco.xyz/
 
 ## Features
 
-- Dynamic wallet connect integration with Solana + EVM connector setup
+- Dynamic wallet connect integration with Solana connector setup
 - Chain toggle UI and chain-aware address validation
 - Solana Maj factory hook (create + list multisigs)
 - Solana Maj details hook (admins, signatures, transactions)
@@ -57,7 +55,3 @@ npm run lint
 npm run build
 ```
 
-## Notes
-
-- Build uses `next build --webpack` to avoid Turbopack-native binding issues on some macOS arm64 environments.
-- SPL factory support is intentionally stubbed until `NEXT_PUBLIC_SPL_FACTORY_PROGRAM_ID` is available.
