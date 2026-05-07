@@ -7,6 +7,8 @@ For this app backend is written in Solana Rust - https://github.com/Ola-Co/Maj_C
 
 This is the link to live site: https://maj.olaco.xyz/
 
+Video Demo is in https://github.com/Ola-Co/Maj_Solana_dApp/blob/main/Solan%20Demo%20480p.mov
+
 ## Features
 
 - Dynamic wallet connect integration with Solana connector setup
