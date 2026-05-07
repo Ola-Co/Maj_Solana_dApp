@@ -5,6 +5,10 @@ Hackathon MVP frontend for Maj multisig contracts on Solana devnet.
 
 For this app backend is written in Solana Rust - https://github.com/Ola-Co/Maj_Core_Solana
 
+This is the link to live repor : https://github.com/Ola-Co/Maj_dApp
+
+This is the link to live site: https://maj.olaco.xyz/
+
 ## Features
 
 - Dynamic wallet connect integration with Solana + EVM connector setup
