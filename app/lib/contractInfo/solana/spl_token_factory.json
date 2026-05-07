@@ -1,0 +1,13 @@
+{
+  "address": "",
+  "metadata": {
+    "name": "spl_token_factory",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "TODO: fill once factory program is deployed"
+  },
+  "instructions": [],
+  "accounts": [],
+  "errors": [],
+  "types": []
+}

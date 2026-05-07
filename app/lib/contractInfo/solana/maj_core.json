@@ -1,0 +1,201 @@
+{
+  "address": "AniZZs2U4KyhMkUTFJ7S8hQagrLLhZN2WbXDVLLJ7TRx",
+  "metadata": {
+    "name": "maj_core",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Maj multisig program for Solana - port of MajFactory.sol + Maj.sol"
+  },
+  "instructions": [
+    {
+      "name": "add_admin",
+      "discriminator": [177, 236, 33, 205, 124, 152, 55, 186],
+      "accounts": [
+        { "name": "maj_instance", "writable": true, "signer": true },
+        { "name": "admin_record", "writable": true },
+        { "name": "payer", "writable": true, "signer": true },
+        { "name": "system_program", "address": "11111111111111111111111111111111" }
+      ],
+      "args": [{ "name": "new_admin", "type": "pubkey" }]
+    },
+    {
+      "name": "add_blacklist",
+      "discriminator": [217, 13, 249, 96, 5, 121, 73, 110],
+      "accounts": [
+        { "name": "maj_instance", "writable": true, "signer": true },
+        { "name": "blacklist_record", "writable": true },
+        { "name": "payer", "writable": true, "signer": true },
+        { "name": "system_program", "address": "11111111111111111111111111111111" }
+      ],
+      "args": [{ "name": "target", "type": "pubkey" }]
+    },
+    {
+      "name": "cancel_transaction",
+      "discriminator": [65, 191, 19, 127, 230, 26, 214, 142],
+      "accounts": [
+        { "name": "maj_instance" },
+        { "name": "maj_transaction", "writable": true },
+        { "name": "admin_record" },
+        { "name": "proposer", "writable": true, "signer": true }
+      ],
+      "args": []
+    },
+    {
+      "name": "change_sigs_required",
+      "discriminator": [8, 249, 20, 80, 102, 23, 158, 61],
+      "accounts": [{ "name": "maj_instance", "writable": true, "signer": true }],
+      "args": [{ "name": "new_sigs_required", "type": "u64" }]
+    },
+    {
+      "name": "create_maj",
+      "discriminator": [153, 41, 66, 61, 49, 122, 114, 22],
+      "accounts": [
+        { "name": "registry", "writable": true },
+        { "name": "name_record", "writable": true },
+        { "name": "maj_instance", "writable": true },
+        { "name": "payer", "writable": true, "signer": true },
+        { "name": "system_program", "address": "11111111111111111111111111111111" }
+      ],
+      "args": [
+        { "name": "name", "type": "string" },
+        { "name": "admins", "type": { "vec": "pubkey" } },
+        { "name": "sigs_required", "type": "u64" }
+      ]
+    },
+    {
+      "name": "execute_transaction",
+      "discriminator": [231, 173, 49, 91, 235, 24, 68, 19],
+      "accounts": [
+        { "name": "maj_instance", "writable": true },
+        { "name": "maj_transaction", "writable": true },
+        { "name": "admin_record" },
+        { "name": "admin", "writable": true, "signer": true },
+        { "name": "system_program", "address": "11111111111111111111111111111111" }
+      ],
+      "args": []
+    },
+    {
+      "name": "propose_transaction",
+      "discriminator": [35, 204, 169, 240, 74, 70, 31, 236],
+      "accounts": [
+        { "name": "maj_instance", "writable": true },
+        { "name": "maj_transaction", "writable": true },
+        { "name": "proposer", "writable": true, "signer": true },
+        { "name": "system_program", "address": "11111111111111111111111111111111" }
+      ],
+      "args": [
+        { "name": "to", "type": "pubkey" },
+        { "name": "value", "type": "u64" },
+        { "name": "data", "type": "bytes" },
+        { "name": "program_id", "type": { "option": "pubkey" } },
+        { "name": "account_metas", "type": { "vec": { "defined": { "name": "SerializedAccountMeta" } } } }
+      ]
+    },
+    {
+      "name": "remove_admin",
+      "discriminator": [74, 202, 71, 106, 252, 31, 72, 183],
+      "accounts": [
+        { "name": "maj_instance", "writable": true, "signer": true },
+        { "name": "admin_record", "writable": true },
+        { "name": "rent_receiver", "writable": true },
+        { "name": "system_program", "address": "11111111111111111111111111111111" }
+      ],
+      "args": [{ "name": "admin_to_remove", "type": "pubkey" }]
+    },
+    {
+      "name": "remove_blacklist",
+      "discriminator": [39, 82, 241, 133, 41, 2, 161, 21],
+      "accounts": [
+        { "name": "maj_instance", "signer": true },
+        { "name": "blacklist_record", "writable": true },
+        { "name": "rent_receiver", "writable": true }
+      ],
+      "args": [{ "name": "target", "type": "pubkey" }]
+    },
+    {
+      "name": "revoke_signature",
+      "discriminator": [15, 8, 51, 247, 178, 101, 114, 177],
+      "accounts": [
+        { "name": "maj_instance" },
+        { "name": "maj_transaction", "writable": true },
+        { "name": "signature_record", "writable": true },
+        { "name": "admin_record" },
+        { "name": "admin", "writable": true, "signer": true }
+      ],
+      "args": []
+    },
+    {
+      "name": "sign_transaction",
+      "discriminator": [192, 35, 247, 2, 152, 115, 196, 110],
+      "accounts": [
+        { "name": "maj_instance", "writable": true },
+        { "name": "maj_transaction", "writable": true },
+        { "name": "signature_record", "writable": true },
+        { "name": "admin_record" },
+        { "name": "admin", "writable": true, "signer": true },
+        { "name": "system_program", "address": "11111111111111111111111111111111" }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    { "name": "MajInstance", "discriminator": [36, 236, 138, 248, 124, 103, 84, 222] },
+    { "name": "MajTransaction", "discriminator": [235, 238, 29, 125, 118, 220, 228, 149] }
+  ],
+  "errors": [
+    { "code": 6000, "name": "DuplicateAdminAddress", "msg": "Duplicate admin address" },
+    { "code": 6001, "name": "ZeroAddress", "msg": "Zero address not allowed" },
+    { "code": 6004, "name": "OnlyAdmin", "msg": "Caller is not an admin" },
+    { "code": 6005, "name": "TransactionNotActive", "msg": "Transaction is not active" },
+    { "code": 6006, "name": "DuplicateSignature", "msg": "Admin has already signed this transaction" },
+    { "code": 6007, "name": "InsufficientSignatures", "msg": "Insufficient signatures to execute" },
+    { "code": 6010, "name": "OnlyProposerCanCancel", "msg": "Only the proposer can cancel this transaction" },
+    { "code": 6014, "name": "NameTaken", "msg": "A Maj with this name already exists" }
+  ],
+  "types": [
+    {
+      "name": "MajInstance",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "name", "type": "string" },
+          { "name": "admins", "type": { "vec": "pubkey" } },
+          { "name": "sigs_required", "type": "u64" },
+          { "name": "tx_count", "type": "u64" },
+          { "name": "bump", "type": "u8" }
+        ]
+      }
+    },
+    {
+      "name": "MajTransaction",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "maj_instance", "type": "pubkey" },
+          { "name": "tx_index", "type": "u64" },
+          { "name": "to", "type": "pubkey" },
+          { "name": "value", "type": "u64" },
+          { "name": "proposed_by", "type": "pubkey" },
+          { "name": "active", "type": "bool" },
+          { "name": "executed", "type": "bool" },
+          { "name": "num_signatures", "type": "u32" },
+          { "name": "program_id", "type": { "option": "pubkey" } },
+          { "name": "data", "type": "bytes" },
+          { "name": "account_metas", "type": { "vec": { "defined": { "name": "SerializedAccountMeta" } } } },
+          { "name": "bump", "type": "u8" }
+        ]
+      }
+    },
+    {
+      "name": "SerializedAccountMeta",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "pubkey", "type": "pubkey" },
+          { "name": "is_signer", "type": "bool" },
+          { "name": "is_writable", "type": "bool" }
+        ]
+      }
+    }
+  ]
+}
